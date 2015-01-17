@@ -20,6 +20,7 @@
 		03C0DC5A1A6A5B4B00781C37 /* FBAudienceNetwork.README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C0DB3F1A6A5B4A00781C37 /* FBAudienceNetwork.README.txt */; };
 		03C0DC5B1A6A5B4B00781C37 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 03C0DB401A6A5B4A00781C37 /* LICENSE */; };
 		03C0DC5C1A6A5B4B00781C37 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C0DB411A6A5B4A00781C37 /* README.txt */; };
+		03C0DD1B1A6AB91100781C37 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C0DD1A1A6AB91100781C37 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		03C0DB3F1A6A5B4A00781C37 /* FBAudienceNetwork.README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FBAudienceNetwork.README.txt; sourceTree = "<group>"; };
 		03C0DB401A6A5B4A00781C37 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		03C0DB411A6A5B4A00781C37 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		03C0DD1A1A6AB91100781C37 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Downloads/parse-library-1.6.1/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			files = (
 				03C0DC591A6A5B4B00781C37 /* FBAudienceNetwork.framework in Frameworks */,
 				03C0DC571A6A5B4B00781C37 /* Bolts.framework in Frameworks */,
+				03C0DD1B1A6AB91100781C37 /* Parse.framework in Frameworks */,
 				03C0DC581A6A5B4B00781C37 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +147,7 @@
 				03C0DB3F1A6A5B4A00781C37 /* FBAudienceNetwork.README.txt */,
 				03C0DB401A6A5B4A00781C37 /* LICENSE */,
 				03C0DB411A6A5B4A00781C37 /* README.txt */,
+				03C0DD1A1A6AB91100781C37 /* Parse.framework */,
 			);
 			name = FacebookSDK;
 			path = ../../../FacebookSDK;
@@ -388,6 +392,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/granttimmerman/Documents/FacebookSDK,
+					"/Users/granttimmerman/Downloads/parse-library-1.6.1",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -403,6 +408,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/granttimmerman/Documents/FacebookSDK,
+					"/Users/granttimmerman/Downloads/parse-library-1.6.1",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
