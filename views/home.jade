@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div.row
+    div.menu.center
+      div.btn-group.margin-top
+        div.btn.btn-md.btn-primary.btn-width
+          span.glyphicon.glyphicon-time
+        div.btn.btn-md.btn-default.btn-width
+          span.glyphicon.glyphicon-heart-empty
+      div.row.text-center.text-light
+        | @UPenn
+
+  div.container-fluid
+    ul.photo-list
+      li.photo.img-responsive
+        img(src='http://lorempixel.com/400/600/people')
+      li.photo.img-responsive
+        img(src='http://lorempixel.com/400/600/people')
+      li.photo.img-responsive
+        img(src='http://lorempixel.com/400/600/people')
+      li.photo.img-responsive
+        img(src='http://lorempixel.com/400/600/people')
+      li.photo.img-responsive
+        img(src='http://lorempixel.com/400/600/people')
+
+  div.camera-wrapper
+    button#camera.btn.btn-primary.btn-lg.btn-block
+      span.glyphicon.glyphicon-camera
+
+block js
+  script(src='/js/index.js')

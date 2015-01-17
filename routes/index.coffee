@@ -7,6 +7,9 @@ routes =
     console.log '/ ' + req.user
     res.render 'index'
 
+  # GET main photo page
+  home: router.get '/home', (req, res) ->
+    res.render 'home'
   # List of images
   list: (req, res) ->
     console.log 'list'
