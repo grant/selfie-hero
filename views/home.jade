@@ -13,17 +13,15 @@ block content
 
   div.container-fluid
     ul.photo-list
-      li.photo.img-responsive
-        img(src='http://lorempixel.com/400/600/people')
-      li.photo.img-responsive
-        img(src='http://lorempixel.com/400/600/people')
-      li.photo.img-responsive
-        img(src='http://lorempixel.com/400/600/people')
-      li.photo.img-responsive
-        img(src='http://lorempixel.com/400/600/people')
-      li.photo.img-responsive
-        img(src='http://lorempixel.com/400/600/people')
-
+      each selfie in selfies
+        li.photo
+          img(src="http://lorempixel.com/400/500").img-responsive
+          div.likes-container.pull-left.text-primary.text-bold
+            span.glyphicon.glyphicon-heart
+            span.likes-text= selfie.likes
+          div.timestamp-container.pull-right.text-primary.text-bold
+            span.glyphicon.glyphicon-time= selfie.timestamp
+      
   div.camera-wrapper
     button#camera.btn.btn-primary.btn-lg.btn-block
       span.glyphicon.glyphicon-camera
