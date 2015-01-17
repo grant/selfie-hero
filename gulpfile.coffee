@@ -9,18 +9,17 @@ prefix = require 'gulp-autoprefixer'
 stylus = require 'gulp-stylus'
 uglify = require 'gulp-uglify'
 
-
 src =
-  coffee: ['**/*.coffee']
-  coffee_index: ['private/index.coffee']
-  stylus: '**/*.styl'
+  coffee: ['**/*.coffee', '!node_modules/**/*']
+  coffee_index: ['private/coffee/index.coffee']
+  stylus: ['**/*.styl', '!node_modules/**/*.styl']
   stylus_index: 'private/index.styl'
 
 dest =
   coffee: 'public/js/'
   stylus: 'public/css/'
 
-gulp.task 'build', ['coffee', 'image', 'stylus']
+gulp.task 'build', ['coffee', 'stylus']
 
 gulp.task 'coffee', ->
   # Lint
@@ -49,7 +48,6 @@ gulp.task 'stylus', ->
 
 gulp.task 'watch', ->
   gulp.watch src.coffee, ['coffee']
-  gulp.watch src.image, ['image']
   gulp.watch src.stylus, ['stylus']
 
 gulp.task 'default', ['build', 'watch']
