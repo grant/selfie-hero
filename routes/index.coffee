@@ -1,8 +1,17 @@
 express = require 'express'
 router = express.Router()
 
-# GET home page.
-router.get '/', (req, res) ->
-  res.render 'index'
+routes =
+  # GET home page.
+  index: router.get '/', (req, res) ->
+    res.render 'index'
 
-module.exports = router
+  # FB auth error
+  authError: (req, res) ->
+    res.send 'error'
+
+  # FB auth success
+  authSuccess: (req, res) ->
+    res.redirect '/list'
+
+module.exports = routes
