@@ -3,6 +3,7 @@ path = require 'path'
 favicon = require 'serve-favicon'
 logger = require 'morgan'
 passport = require 'passport'
+login = require('./private/coffee/login') passport
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
 routes = require './routes'
