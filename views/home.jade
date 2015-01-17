@@ -13,15 +13,14 @@ block content
 
   div.container-fluid
     ul.photo-list
-      //- each selfie in selfies
-        //- li.photo.img-responsive
-        //-   img(src="http://lorempixel.com/200/400")
-        //-   div.text-left
-        //-     span.glyiphicon.glyphicon-heart-full
-        //-     | selfie.likes
-        //-   div.text-right.text-light
-        //-     span.glyiphicon.glyphicon-time
-        //-     | selfie.timestamp
+      each selfie in selfies
+        li.photo
+          img(src="http://lorempixel.com/400/500").img-responsive
+          div.likes-container.pull-left.text-primary.text-bold
+            span.glyphicon.glyphicon-heart
+            span.likes-text= selfie.likes
+          div.timestamp-container.pull-right.text-primary.text-bold
+            span.glyphicon.glyphicon-time= selfie.timestamp
       
   div.camera-wrapper
     button#camera.btn.btn-primary.btn-lg.btn-block
