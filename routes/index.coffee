@@ -1,12 +1,28 @@
 express = require 'express'
 router = express.Router()
 
-# GET index page.
-router.get '/', (req, res) ->
-  res.render 'index'
+routes =
+  # GET home page.
+  index: router.get '/', (req, res) ->
+    res.render 'index'
 
-# GET home page
-router.get '/home', (req, res) ->
-  res.render 'home'
+  # GET main photo page
+  home: router.get '/home', (req, res) ->
+    res.render 'home'
+  # List of images
+  list: (req, res) ->
+    console.log 'list'
+    console.log req.user
+    res.json req.user
 
-module.exports = router
+  # FB auth error
+  authError: (req, res) ->
+    res.send 'error'
+
+  # FB auth success
+  authSuccess: (req, res) ->
+    # res.json req.user
+    res.redirect '/list'
+
+module.exports = routes
+>>>>>>> d01e9a5495d8793cdf2c556f81f2bd9e08bffc84
