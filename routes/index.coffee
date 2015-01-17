@@ -24,6 +24,7 @@ obj =
 routes =
   # GET home page.
   index: router.get '/', (req, res) ->
+    console.log '/ ' + req.user
     res.render 'index'
 
   # GET main photo page
