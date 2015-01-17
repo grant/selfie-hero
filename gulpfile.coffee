@@ -13,7 +13,7 @@ src =
   coffee: ['**/*.coffee', '!node_modules/**/*']
   coffee_index: ['private/coffee/index.coffee']
   stylus: ['**/*.styl', '!node_modules/**/*.styl']
-  stylus_index: 'private/index.styl'
+  stylus_index: 'private/stylus/index.styl'
 
 dest =
   coffee: 'public/js/'

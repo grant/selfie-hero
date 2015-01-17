@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "coffee ./bin/www"
+    "start": "coffee ./bin/www",
+    "postinstall": "node node_modules/.bin/gulp build"
   },
   "dependencies": {
     "body-parser": "~1.10.1",
