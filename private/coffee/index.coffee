@@ -1,11 +1,11 @@
-timer = null
-$(window).addEventListener "scroll", (->
-  clearTimeout timer  if timer isnt null
-  timer = setTimeout(->
-  # fires when you haven't scrolled in 150 ms
-  console.log "stopped scrolling"
-  $(".menu").fadeIn()
-  
-  , 150)
-  return
-), false
+$(window).scroll ->
+  clearTimeout $.data(this, "scrollTimer")
+  $.data this, "scrollTimer", setTimeout(->
+    
+    # do something
+    $(".menu").fadeIn()
+    $("#camera").fadeIn()
+  , 250)
+
+  $(".menu").fadeOut()
+  $("#camera").fadeOut()

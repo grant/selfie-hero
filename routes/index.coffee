@@ -25,4 +25,3 @@ routes =
     res.redirect '/list'
 
 module.exports = routes
->>>>>>> d01e9a5495d8793cdf2c556f81f2bd9e08bffc84
