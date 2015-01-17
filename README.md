@@ -4,7 +4,7 @@ A tournament-style selfie battle
 ### How to start server
 
 ```sh
-$ npm start
+$ foreman start -e .env-dev
 ```
 
 ### How to develop
