@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>80C569B3-38EA-4525-A4EF-1203636F1D86</string>
+	<string>54B80090-BC5C-4385-8584-44205D5F471C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>app</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>github.com:grant/selfie-hero.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>app.xcodeproj</string>
+	<string>app/app.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>487CE2D4074F53F6413A29BAF06F940A7689FBED</key>
-		<string>../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:grant/selfie-hero.git</string>
