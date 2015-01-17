@@ -25,8 +25,14 @@ app.use express.static(path.join(__dirname, 'public'))
 
 # Routes
 app.use '/', routes.index
-app.get('/auth/facebook', passport.authenticate("facebook", {scope:'email'}));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/auth/error' }), routes.authSuccess);
+app.use '/list', routes.list
+app.use '/auth/error', routes.authError
+app.get '/auth/facebook', passport.authenticate('facebook',
+  scope: 'email'
+)
+app.get '/auth/facebook/callback', passport.authenticate('facebook',
+  failureRedirect: '/auth/error'
+), routes.authSuccess
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

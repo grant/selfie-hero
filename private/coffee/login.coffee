@@ -8,9 +8,7 @@ module.exports = (passport) ->
   #
   passport.serializeUser (user, done) ->
     console.log 'serializeUser: ' + user._id
-    done null, user._id
-    return
-
+    done null, user.id
 
   #
   #    intended to return the user profile based on the id that was serialized
@@ -22,9 +20,6 @@ module.exports = (passport) ->
         done null, user
       else
         done err, null
-      return
-
-    return
 
   passport.use new FacebookStrategy
     clientID: process.env.FACEBOOK_APP_ID
@@ -37,4 +32,5 @@ module.exports = (passport) ->
       'photos'
     ]
   , (accessToken, refreshToken, profile, done) ->
-    done null
+    console.log 'success'
+    done null, profile
