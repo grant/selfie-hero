@@ -4,6 +4,7 @@ router = express.Router()
 routes =
   # GET home page.
   index: router.get '/', (req, res) ->
+    console.log '/ ' + req.user
     res.render 'index'
 
   # List of images
