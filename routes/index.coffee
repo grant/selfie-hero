@@ -48,7 +48,6 @@ routes =
 
   api:
     photos: (req, res) ->
-      console.log JSON.stringify req.files
       res.send 'server response'
 
 module.exports = routes
