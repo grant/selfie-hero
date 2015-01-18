@@ -25,8 +25,8 @@ block content
             div.text-center.heart-text
               span.glyphicon.glyphicon-heart
       each selfie in selfies
-        li.photo(data-photo-id=selfie.id)
-          img(src="http://104.236.41.161/"+selfie.url).img-responsive
+        li.photo(data-photo-id=selfie.id style="background-image: url(http://104.236.41.161/"+selfie.url+");")
+          //- img.img-responsive
           div.likes-container.pull-left.text-light.text-bold
             span.glyphicon.glyphicon-heart
             span.likes-text= selfie.hearts.length
