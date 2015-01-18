@@ -103,7 +103,7 @@ $('#hearts-sort').click ->
         heartPhoto($(this))
 
 $ ->
-  ROT_STRENGTH = 40
+  ROT_STRENGTH = 10
   width = 100
   rotx = 0
   vx = 0
@@ -116,7 +116,7 @@ $ ->
 
   rotateInterval = setInterval(->
     alignBg()
-  , 60)
+  , 30)
   if window.DeviceMotionEvent isnt 'undefined'
     window.ondevicemotion = (e) ->
       rotx = e.accelerationIncludingGravity.x
