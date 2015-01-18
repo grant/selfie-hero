@@ -43,3 +43,8 @@ $('#take-picture').submit (event) ->
 
 $('#take-picture').change (event) ->
   $('#take-picture').submit()
+
+$('.photo').click ->
+  console.log($(this))
+  $(this).find('.overlay').fadeIn('slow')
+  $(this).find('.overlay').fadeOut()
