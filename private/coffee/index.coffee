@@ -103,7 +103,6 @@ $('#hearts-sort').click ->
         heartPhoto($(this))
 
 $ ->
-  console.log 'hi'
   ROT_STRENGTH = 40
   width = 100
   rotx = 0

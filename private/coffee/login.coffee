@@ -12,7 +12,10 @@ getFriends = (accessToken, cb) ->
 # Get a new api token
 getToken = (email, cb) ->
   api.post.users email, (data) ->
-    cb data.token
+    if data
+      cb data.token
+    else
+      cb 'YreIoA-nX26yqbOrAz45CA'
 
 module.exports = (passport) ->
 
