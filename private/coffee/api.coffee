@@ -24,9 +24,8 @@ module.exports =
   post:
     users: (email, cb) ->
       url = apiPath + 'api/users'
-      request
+      request.post
         uri: url
-        method: 'POST'
         form:
           email: email
       , (err, res, body) ->
@@ -36,14 +35,15 @@ module.exports =
       # TODO
       cb()
     heart: (photoId, token, cb) ->
+      console.log "server!"
       console.log photoId
       console.log token
       url = apiPath + 'api/photos/' + photoId + '/heart'
       request.post
         uri: url
-        qs =
-          photoId: photoId
-          token: DEFAULT_TOKEN
+        form:
+          token: token
       , (err, res, body) ->
         # Return the current state of the heart
+        console.log body
         cb JSON.parse body

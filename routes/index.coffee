@@ -11,7 +11,6 @@ routes =
   # GET main photo page
   home: router.get '/home', (req, res) ->
     api.get.photos (body) ->
-      console.log req.user
       res.render 'home',
         user: req.user
         selfies: body

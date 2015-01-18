@@ -12,7 +12,8 @@ $(window).scroll ->
 
   $(".menu").fadeOut()
   $("#camera").fadeOut()
-
+api.post.users("rogerthechen@gmail.com") (res) ->
+  console.log(res)
 # camera logic to pass the event to the actual file input
 $("#camera").click ->
   $("#take-picture").click()
@@ -46,26 +47,30 @@ $('#take-picture').change (event) ->
   $('#take-picture').submit()
 
 $('.photo').click ->
-  console.log "photo clicked!"
   photo_id = $(this).attr("data-photo-id")
   hearts_text = $(this).find(".likes-text")
   hearts_wrapper = $(this).find(".likes-container")
   num_likes = parseInt(hearts_text.text())
-  console.log(photo_id)
   $(this).find('.overlay').fadeIn('slow')
   $(this).find('.overlay').fadeOut()
-  api.post.heart(photo_id) (body) ->
-    console.log("liked")
-    console.log(body)
+  token = $("#api-token").val()
+  console.log token
+  api.post.heart(photo_id, token) (body) ->
+    console.log "liked"
+    console.log body
     hearts_text.text(body.heart_count)
-    hearts_wrapper.removeClass("text-light").addClass("text-primary")
+    # toggles color
+    if body.heart_status
+      hearts_wrapper.removeClass("text-light").addClass("text-primary")
+    else
+      hearts_wrapper.removeClass("text-primary").addClass("text-light")
 
 $('#recency-sort').click ->
   $("#sorting-order").value = "recency"
   console.log("switched to recency sort")
-  window.location.href +="&sortType=recency"
+  $(this).removeClass("btn-primary").addClass("btn-default")
 
 $('#hearts-sort').click ->
   $("#sorting-order").value = "hearts"
   console.log("switched to hearts sort")
-  window.location.href +="&sortType=hearts"
+  $(this).removeClass("btn-primary").addClass("btn-default")

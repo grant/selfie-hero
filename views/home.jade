@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  input#api-token(type="hidden" value=user.apiToken)
   div.row
     div.menu.center
       div.btn-group.margin-top
@@ -18,7 +19,6 @@ block content
       input(type="file" multiple="multiple" id="take-picture" accept="image/*")
 
   div.container-fluid
-    input#sorting-order(type="hidden" value="recency")
     ul.photo-list
       li.photo#new-photo-wrapper.hidden
         img#new-photo.img-responsive
