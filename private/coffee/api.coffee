@@ -1,12 +1,17 @@
 request = require 'request'
 apiPath = 'http://104.236.41.161/'
+params =
+  token: 'YreIoA-nX26yqbOrAz45CA'
+  longitude: 75
+  latitude: 39
+  radius: 100
 
 # A wrapper for `https://github.com/rcchen/sh-server`
 module.exports =
   get:
     photos: (cb) ->
-      url = apiPath + 'get/photos'
-      request url, (err, res, body) ->
+      url = apiPath + 'api/photos'
+      request {url: url, qs: params}, (err, res, body) ->
         cb JSON.parse body
   post:
     users: (email, cb) ->

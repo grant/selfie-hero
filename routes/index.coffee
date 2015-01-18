@@ -1,25 +1,7 @@
 express = require 'express'
 router = express.Router()
-
-obj =
-  selfies: [
-    img_url: "http://lorempixel.com/people/400/400"
-    likes: 30
-    timestamp: Date.now() - 5000
-  ,
-    img_url: "http://lorempixel.com/people/400/400"
-    likes: 23
-    timestamp: Date.now() - 2000
-  ,
-    img_url: "http://lorempixel.com/people/400/400"
-    likes: 20
-    timestamp: Date.now() - 1000
-  ,
-    img_url: "http://lorempixel.com/people/400/400"
-    likes: 10
-    timestamp: Date.now() - 100
-  ]
-
+request = require 'request'
+api = require '../private/coffee/api'
 
 routes =
   # GET home page.
@@ -29,7 +11,8 @@ routes =
 
   # GET main photo page
   home: router.get '/home', (req, res) ->
-    res.render 'home', obj
+    api.get.photos (body) ->
+      res.render 'home', {selfies: body}
 
   # List of images
   list: (req, res) ->
