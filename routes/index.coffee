@@ -1,6 +1,5 @@
 express = require 'express'
 router = express.Router()
-request = require 'request'
 api = require '../private/coffee/api'
 
 routes =
