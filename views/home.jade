@@ -13,9 +13,14 @@ block content
     div.camera-wrapper
       button#camera.btn.btn-primary.btn-lg.btn-block
         span.glyphicon.glyphicon-camera
+    span#dummy-file-wrapper.hidden
+      input(type="file" id="take-picture" accept="image/*")
+      
 
   div.container-fluid
     ul.photo-list
+      li.photo
+        img#new-photo.img-responsive
       each selfie in selfies
         li.photo
           img(src="http://lorempixel.com/400/500").img-responsive

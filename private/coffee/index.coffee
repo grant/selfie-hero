@@ -10,9 +10,28 @@ $(window).scroll ->
   $(".menu").fadeOut()
   $("#camera").fadeOut()
 
-# camera logic
+# camera logic to pass the event to the actual file input
 $("#camera").click ->
-  # Get a reference to the taken picture or chosen file
+  $("#take-picture").click()
+
+
+$("#take-picture").change (event) ->
+  # Get a reference to the taken picture or chosen file  
   files = event.target.files
   file = undefined
   file = files[0]  if files and files.length > 0
+  console.log(file);
+  # Image reference
+  showPicture = $("#new-photo")
+
+  # Get window.URL object
+  URL = window.URL or window.webkitURL
+
+  # Create ObjectURL
+  imgURL = URL.createObjectURL(file)
+
+  # Set img src to ObjectURL
+  showPicture.src = imgURL
+
+  # For performance reasons, revoke used ObjectURLs
+  URL.revokeObjectURL imgURL
