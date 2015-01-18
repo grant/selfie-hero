@@ -10,7 +10,7 @@ routes =
   # GET main photo page
   home: router.get '/home', (req, res) ->
     if req.user
-      api.get.photos (body) ->
+      api.get.photos null, (body) ->
         res.render 'home',
           user: req.user
           selfies: body
