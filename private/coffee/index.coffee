@@ -20,9 +20,8 @@ $("#take-picture").change (event) ->
   files = event.target.files
   file = undefined
   file = files[0]  if files and files.length > 0
-  console.log(file);
+  $("#image-form").submit()
   # Image reference
-  showPicture = $("#new-photo")
 
   # Get window.URL object
   URL = window.URL or window.webkitURL
