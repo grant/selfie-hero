@@ -23,23 +23,5 @@ $("#take-picture").change (event) ->
   file = undefined
   file = files[0]  if files and files.length > 0
 
-  
   $("#image-form").submit()
   event.preventDefault()
-
-$("#image-form").submit -> 
-  console.log "submitting"
-  $.ajax
-    error: (xhr) ->
-      status "Error: " + xhr.status
-      return
-
-    success: (response) ->
-      if response.error
-        status "Opps, something bad happened"
-        return
-      imageUrlOnServer = response.path
-      status "Success, file uploaded to:" + imageUrlOnServer
-
-      newImg = $("#new-photo").attr("src", "http://lorempixel.com/people/400/400").attr("class", "img-responsive photo").load ->
-        newImg.prependTo($("#new-photo-wrapper"))

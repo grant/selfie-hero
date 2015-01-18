@@ -15,7 +15,7 @@ block content
         span.glyphicon.glyphicon-camera
     span#dummy-file-wrapper.hidden
 
-    form(action="api/photos" enctype="multipart/form-data" method="post" id="image-form").hidden
+    form(action="/api/photos" enctype="multipart/form-data" method="post" id="image-form").hidden
       input(type="file" multiple="multiple" id="take-picture" accept="image/*")
 
   div.container-fluid
