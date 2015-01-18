@@ -9,6 +9,7 @@ cookieParser = require 'cookie-parser'
 session = require("express-session")
 MongoStore = require("connect-mongo")(session)
 bodyParser = require 'body-parser'
+multer = require 'multer'
 routes = require './routes'
 
 app = express()
@@ -20,9 +21,12 @@ app.set 'view engine', 'jade'
 
 # uncomment after placing your favicon in /public
 #app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use multer dest: './public/uploads'
 app.use logger('dev')
-app.use bodyParser.json()
-app.use bodyParser.urlencoded(extended: false)
+app.use bodyParser.json(limit: '50mb')
+app.use bodyParser.urlencoded
+  extended: false
+  limit: '50mb'
 app.use cookieParser()
 app.use session(
   secret: "foo"
@@ -42,6 +46,7 @@ app.get '/auth/facebook', passport.authenticate('facebook',
 app.get '/auth/facebook/callback', passport.authenticate('facebook',
   failureRedirect: '/auth/error'
 ), routes.authSuccess
+app.post '/api/photos', routes.api.photos
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
