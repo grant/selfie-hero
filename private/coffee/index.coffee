@@ -45,30 +45,26 @@ $('#take-picture').submit (event) ->
     contentType: false
     processData: false
     success: (returnedData) ->
-      # TODO: render the new image!
-      image = $("#new-photo-wrapper")
       data = JSON.parse(returnedData)
-      image.css("background-image", "url("+SERVER_URL + "/" + data.url+")")
-      image.css("display", "block")
-      # not sure why fadein doesn't work?
-      # image.fadeIn()
       timestamp_text = moment(data.created_at).fromNow()
-      image.find(".timestamp-text").text(timestamp_text)
-      image.find(".hearts-text").text(data.hearts_count)
-
-
+      newPhoto =
+        url: data.url
+        created_at_text: timestamp_text
+        id: data.id
+        hearts_count: data.hearts_count
+      newPhoto = $(renderPhoto(newPhoto))
+      $(".photo-list").prepend(newPhoto)
+      newPhoto.click ->
+        heartPhoto($(this))
   return false
 
-$('#take-picture').change (event) ->
-  $('#take-picture').submit()
-
-$('.photo').click ->
-  photo_id = $(this).attr("data-photo-id")
-  hearts_text = $(this).find(".likes-text")
-  hearts_wrapper = $(this).find(".likes-container")
+heartPhoto = (obj) ->
+  photo_id = obj.attr("data-photo-id")
+  hearts_text = obj.find(".likes-text")
+  hearts_wrapper = obj.find(".likes-container")
   num_likes = parseInt(hearts_text.text())
-  $(this).find('.overlay').fadeIn('slow')
-  $(this).find('.overlay').fadeOut()
+  obj.find('.overlay').fadeIn('slow')
+  obj.find('.overlay').fadeOut()
   token = $("#api-token").val()
   api.post.heart photo_id, token, (body) ->
     hearts_text.text(body.heart_count)
@@ -76,6 +72,11 @@ $('.photo').click ->
       hearts_wrapper.removeClass("text-light").addClass("text-primary")
     else
       hearts_wrapper.removeClass("text-primary").addClass("text-light")
+$('#take-picture').change (event) ->
+  $('#take-picture').submit()
+
+$('.photo').click ->
+  heartPhoto($(this))
 
 $('#recency-sort').click ->
   $("#sorting-order").value = "recency"
