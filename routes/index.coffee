@@ -46,8 +46,9 @@ routes =
     # res.json req.user
     res.redirect '/list'
 
-  api: (req, res) ->
-    console.log JSON.stringify req.files
-    res.send 'hi'
+  api:
+    photos: (req, res) ->
+      console.log JSON.stringify req.files
+      res.send 'server response'
 
 module.exports = routes

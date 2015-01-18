@@ -1,3 +1,5 @@
+$ = require 'jquery'
+
 $(window).scroll ->
   clearTimeout $.data(this, "scrollTimer")
   $.data this, "scrollTimer", setTimeout(->
@@ -20,18 +22,30 @@ $("#take-picture").change (event) ->
   files = event.target.files
   file = undefined
   file = files[0] if files and files.length > 0
-  console.log(file);
-  # Image reference
-  showPicture = $("#new-photo")
+  formData = new FormData()
+  formData.append 'file', file
 
-  # Get window.URL object
-  URL = window.URL or window.webkitURL
+  console.log formData
+  $.ajax
+    url: '/api/photos'
+    data: formData
+    processData: false
+    type: 'POST'
+    success: (data) ->
+      console.log data
 
-  # Create ObjectURL
-  imgURL = URL.createObjectURL(file)
+  event.preventDefault()
+  # # Image reference
+  # showPicture = $("#new-photo")
 
-  # Set img src to ObjectURL
-  showPicture.src = imgURL
+  # # Get window.URL object
+  # URL = window.URL or window.webkitURL
 
-  # For performance reasons, revoke used ObjectURLs
-  URL.revokeObjectURL imgURL
+  # # Create ObjectURL
+  # imgURL = URL.createObjectURL(file)
+
+  # # Set img src to ObjectURL
+  # showPicture.src = imgURL
+
+  # # For performance reasons, revoke used ObjectURLs
+  # URL.revokeObjectURL imgURL
