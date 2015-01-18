@@ -1,4 +1,5 @@
 $ = require 'jquery'
+api = require './api'
 
 $(window).scroll ->
   clearTimeout $.data(this, "scrollTimer")
@@ -45,6 +46,16 @@ $('#take-picture').change (event) ->
   $('#take-picture').submit()
 
 $('.photo').click ->
-  console.log($(this))
+  console.log "photo clicked!"
+  photo_id = $(this).attr("data-photo-id")
+  hearts_text = $(this).find(".likes-text")
+  hearts_wrapper = $(this).find(".likes-container")
+  num_likes = parseInt(hearts_text.text())
+  console.log(photo_id)
   $(this).find('.overlay').fadeIn('slow')
   $(this).find('.overlay').fadeOut()
+  api.post.heart(photo_id) (body) ->
+    console.log("liked")
+    console.log(body)
+    hearts_text.text(num_likes+1)
+    hearts_wrapper.removeClass("text-light").addClass("text-primary")

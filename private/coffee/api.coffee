@@ -1,7 +1,8 @@
 request = require 'request'
 apiPath = 'http://104.236.41.161/'
+DEFAULT_TOKEN = 'YreIoA-nX26yqbOrAz45CA'
 params =
-  token: 'YreIoA-nX26yqbOrAz45CA'
+  token: DEFAULT_TOKEN
   longitude: 75
   latitude: 39
   radius: 100
@@ -27,10 +28,12 @@ module.exports =
       # TODO
       cb()
     heart: (photoId, token, cb) ->
+      console.log photoId
+      console.log token
       url = apiPath + 'api/photos/' + photoId + '/heart'
       request.post
         uri: url
-        form:
+        qs =
           photoId: photoId
           token: token
       , (err, res, body) ->

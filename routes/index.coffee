@@ -12,6 +12,7 @@ routes =
   # GET main photo page
   home: router.get '/home', (req, res) ->
     api.get.photos (body) ->
+      # TODO: grab api token here and pass it inot the home page to render as a hidden token id.
       res.render 'home', {selfies: body}
 
   # List of images
