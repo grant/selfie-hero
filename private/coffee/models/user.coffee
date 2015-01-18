@@ -21,6 +21,9 @@ userSchema = new Schema(
   accessToken:
     type: String
 
+  apiToken:
+    type: String
+
   name:
     type: String
 

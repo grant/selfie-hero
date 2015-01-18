@@ -20,13 +20,13 @@ module.exports =
         json = JSON.parse body
         for photo in json
           photo.created_at_text = moment(photo.created_at).fromNow()
-        console.log json
         cb json
   post:
     users: (email, cb) ->
       url = apiPath + 'api/users'
-      request.post
+      request
         uri: url
+        method: 'POST'
         form:
           email: email
       , (err, res, body) ->

@@ -1,4 +1,5 @@
 request = require 'request'
+api = require './api'
 FacebookStrategy = require('passport-facebook').Strategy
 User = require './models/user'
 
@@ -7,6 +8,11 @@ getFriends = (accessToken, cb) ->
   friendsUrl = 'https://graph.facebook.com/me/friends?access_token=' + accessToken
   request friendsUrl, (err, response, body) ->
     cb JSON.parse(body).data
+
+# Get a new api token
+getToken = (email, cb) ->
+  api.post.users email, (data) ->
+    cb data.token
 
 module.exports = (passport) ->
 
@@ -64,18 +70,21 @@ module.exports = (passport) ->
             oldUser.friends = friends
             return done null, oldUser
       else
-        return done(err)  if err
+        return done(err) if err
         console.log 'new user found'
+        email = profile.emails[0].value
         getFriends accessToken, (friends) ->
-          newUser = new User(
-            fbId: profile.id
-            accessToken: accessToken
-            friends: friends
-            email: profile.emails[0].value
-            name: profile.displayName
-            photo: 'http://graph.facebook.com/' + profile.id + '/picture?width=800'
-            username: profile.emails[0].value.split('@')[0]
-          ).save((err, newUser) ->
-            return done(err) if err
-            return done null, newUser
-          )
+          getToken email, (apiToken) ->
+            newUser = new User(
+              fbId: profile.id
+              accessToken: accessToken
+              apiToken: apiToken
+              friends: friends
+              email: email
+              name: profile.displayName
+              photo: 'http://graph.facebook.com/' + profile.id + '/picture?width=800'
+              username: profile.emails[0].value.split('@')[0]
+            ).save((err, newUser) ->
+              return done(err) if err
+              return done null, newUser
+            )
