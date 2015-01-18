@@ -116,7 +116,7 @@ $ ->
 
   rotateInterval = setInterval(->
     alignBg()
-  , 1700)
+  , 60)
   if window.DeviceMotionEvent isnt 'undefined'
     window.ondevicemotion = (e) ->
       rotx = e.accelerationIncludingGravity.x
