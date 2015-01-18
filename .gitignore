@@ -31,7 +31,9 @@ node_modules
 # Debug log from npm
 npm-debug.log
 
-public
+public/js
+public/css
+public/images
 
 .env
 .env-dev

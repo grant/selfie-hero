@@ -14,7 +14,6 @@ block content
       button#camera.btn.btn-primary.btn-lg.btn-block
         span.glyphicon.glyphicon-camera
     span#dummy-file-wrapper.hidden
-
     form(action="/api/photos" enctype="multipart/form-data" method="post" id="image-form").hidden
       input(type="file" multiple="multiple" id="take-picture" accept="image/*")
 
@@ -24,11 +23,12 @@ block content
         img#new-photo.img-responsive
       each selfie in selfies
         li.photo
+          div.overlay
           img(src="http://lorempixel.com/400/500").img-responsive
-          div.likes-container.pull-left.text-primary.text-bold
+          div.likes-container.pull-left.text-light.text-bold
             span.glyphicon.glyphicon-heart
             span.likes-text= selfie.likes
-          div.timestamp-container.pull-right.text-primary.text-bold
+          div.timestamp-container.pull-right.text-light.text-bold
             span.glyphicon.glyphicon-time
             span.timestamp-text=  selfie.timestamp
 
