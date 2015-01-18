@@ -25,14 +25,14 @@ block content
             div.text-center.heart-text
               span.glyphicon.glyphicon-heart
       each selfie in selfies
-        li.photo(data-photo-id=selfie.id)
-          img(src="http://104.236.41.161/"+selfie.url).img-responsive
+        li.photo(data-photo-id=selfie.id style="background-image: url(http://104.236.41.161/"+selfie.url+");")
+          //- img.img-responsive
           div.likes-container.pull-left.text-light.text-bold
             span.glyphicon.glyphicon-heart
             span.likes-text= selfie.hearts.length
           div.timestamp-container.pull-right.text-light.text-bold
             span.glyphicon.glyphicon-time
-            span.timestamp-text= selfie.created_at
+            span.timestamp-text= selfie.created_at_text
           div.overlay
             div.text-center.heart-text.text-primary
               span.glyphicon.glyphicon-heart
