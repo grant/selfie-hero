@@ -23,18 +23,44 @@ imageToBase64 = (file, cb) ->
     cb e.target.result
   fr.readAsDataURL file
 
-$('#take-picture').change (event) ->
-  # Get a reference to the taken picture or chosen file
-  files = event.target.files
-  file = undefined
-  file = files[0] if files and files.length > 0
+$('#take-picture').submit (event) ->
+  event.preventDefault()
 
-  imageToBase64 file, (base64) ->
-    $.post '/api/photos',
-      data:
-        photo: base64
-      success: ->
-        console.log 'success'
+  # file
+  # formData = new FormData($(this)[0])
+  # console.log $(this)[0]
+  # console.log formData
+  formData = new FormData()
+  file = event.target.files[0]
+  formData.append 'photo', file, file.name
+  formData.append 'token', '0Zj1B63fZVPrENzf0wc_Dg'
+
+  $.ajax
+    url: 'http://104.236.41.161/api/photos'
+    type: 'POST'
+    data: formData
+    async: false
+    cache: false
+    contentType: false
+    processData: false
+    success: (returnedData) ->
+      console.log returnedData
+
+  return false
+
+$('#take-picture').change (event) ->
+  $('#take-picture').submit()
+  # Get a reference to the taken picture or chosen file
+  # files = event.target.files
+  # file = undefined
+  # file = files[0] if files and files.length > 0
+
+  # console.log file
+
+
+  # imageToBase64 file, (base64) ->
+  #   $.post '/api/photos', photo: base64, (e) ->
+  #     console.log 'replied'
 
 
   # Image reference
