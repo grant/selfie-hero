@@ -48,10 +48,6 @@ routes =
 
   api:
     photos: (req, res) ->
-      console.log 'body:'
-      console.log req.body
-      console.log 'files:'
-      console.log req.files
       res.send 'server response'
 
 module.exports = routes
