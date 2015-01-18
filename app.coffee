@@ -42,6 +42,7 @@ app.get '/auth/facebook', passport.authenticate('facebook',
 app.get '/auth/facebook/callback', passport.authenticate('facebook',
   failureRedirect: '/auth/error'
 ), routes.authSuccess
+app.post '/api/photos', routes.api.photos
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
