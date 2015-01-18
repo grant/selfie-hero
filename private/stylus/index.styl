@@ -19,10 +19,8 @@ h2#title
   font-family
 
 #bg-cover
-  /* Set up proportionate scaling */
   width: 100%
   height: auto
-  /* Set up positioning */
   position: fixed
   top: 0
   left: 0
@@ -106,20 +104,11 @@ h2#title
   margin-left 0px
   margin-top -20px
   
-.photo .overlay
+.photo > .overlay
   background rgba(0,0,0,.80)
   text-align center
   padding 45px 0 66px 0
   opacity 0
-  -webkit-transition  opacity .25s ease
-  -moz-transition  opacity .25s ease
 
-.photo:hover
+.photo:hover > .overlay
   opacity 1
-
-@font-face {
-  font-family: Graphik;
-  src: url(font/graphik/Graphik-Medium.otf);
-  src: local('Graphik'), local(Graphik'),
-         url(Graphik-Medium.otf) format('opentype');
-}
