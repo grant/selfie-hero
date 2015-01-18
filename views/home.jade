@@ -4,10 +4,10 @@ block content
   div.row
     div.menu.center
       div.btn-group.margin-top
-        div.btn.btn-md.btn-primary.btn-width
+        div.btn.btn-md.btn-primary.btn-width#recency-sort
           span.glyphicon.glyphicon-time
         div.btn.btn-md.btn-default.btn-width
-          span.glyphicon.glyphicon-heart-empty
+          span.glyphicon.glyphicon-heart-empty#hearts-sort
       div.row.text-center.text-light
         //- | @UPenn
     div.camera-wrapper
@@ -18,6 +18,7 @@ block content
       input(type="file" multiple="multiple" id="take-picture" accept="image/*")
 
   div.container-fluid
+    input#sorting-order(type="hidden" value="recency")
     ul.photo-list
       li.photo#new-photo-wrapper.hidden
         img#new-photo.img-responsive
@@ -36,8 +37,6 @@ block content
           div.overlay
             div.text-center.heart-text.text-primary
               span.glyphicon.glyphicon-heart
-
-
 
 block js
   script(src='/js/index.js')

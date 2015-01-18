@@ -2,17 +2,20 @@ request = require 'request'
 moment = require 'moment'
 apiPath = 'http://104.236.41.161/'
 DEFAULT_TOKEN = 'YreIoA-nX26yqbOrAz45CA'
-params =
-  token: DEFAULT_TOKEN
-  longitude: 75
-  latitude: 39
-  radius: 100
+
 
 # A wrapper for `https://github.com/rcchen/sh-server`
 module.exports =
   get:
-    photos: (cb) ->
+    photos: (cb, sort="recency") ->
       url = apiPath + 'api/photos'
+      params =
+        token: DEFAULT_TOKEN
+        longitude: 75
+        latitude: 39
+        radius: 100
+        sort: sort
+      console.log("sorting by "+sort)
       request {url: url, qs: params}, (err, res, body) ->
         json = JSON.parse body
         for photo in json
@@ -40,7 +43,7 @@ module.exports =
         uri: url
         qs =
           photoId: photoId
-          token: token
+          token: DEFAULT_TOKEN
       , (err, res, body) ->
         # Return the current state of the heart
         cb JSON.parse body

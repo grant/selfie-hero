@@ -57,5 +57,15 @@ $('.photo').click ->
   api.post.heart(photo_id) (body) ->
     console.log("liked")
     console.log(body)
-    hearts_text.text(num_likes+1)
+    hearts_text.text(body.heart_count)
     hearts_wrapper.removeClass("text-light").addClass("text-primary")
+
+$('#recency-sort').click ->
+  $("#sorting-order").value = "recency"
+  console.log("switched to recency sort")
+  window.location.href +="&sortType=recency"
+
+$('#hearts-sort').click ->
+  $("#sorting-order").value = "hearts"
+  console.log("switched to hearts sort")
+  window.location.href +="&sortType=hearts"
