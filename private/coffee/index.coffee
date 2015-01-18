@@ -47,12 +47,12 @@ $('#take-picture').submit (event) ->
     success: (returnedData) ->
       data = JSON.parse(returnedData)
       timestamp_text = moment(data.created_at).fromNow()
-      newPhoto =
+      newPhotoObj =
         url: data.url
         created_at_text: timestamp_text
         id: data.id
         hearts_count: data.hearts_count
-      newPhoto = $(renderPhoto(newPhoto))
+      newPhoto = $(renderPhoto(newPhotoObj))
       $(".photo-list").prepend(newPhoto)
       newPhoto.click ->
         heartPhoto($(this))
@@ -85,7 +85,10 @@ $('#recency-sort').click ->
   api.get.photos "recency", (body) ->
     $(".photo-list").empty()
     for selfie in body
-      $(".photo-list").append(renderPhoto(selfie))
+      newPhoto = $(renderPhoto(selfie))
+      $(".photo-list").prepend(newPhoto)
+      newPhoto.click ->
+        heartPhoto($(this))
 
 $('#hearts-sort').click ->
   $("#sorting-order").value = "hearts"
@@ -94,4 +97,7 @@ $('#hearts-sort').click ->
   api.get.photos "hearts", (body) ->
     $(".photo-list").empty()
     for selfie in body
-      $(".photo-list").append(renderPhoto(selfie))
+      newPhoto = $(renderPhoto(selfie))
+      $(".photo-list").prepend(newPhoto)
+      newPhoto.click ->
+        heartPhoto($(this))
