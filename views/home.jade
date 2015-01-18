@@ -10,6 +10,9 @@ block content
           span.glyphicon.glyphicon-heart-empty
       div.row.text-center.text-light
         //- | @UPenn
+    div.camera-wrapper
+      button#camera.btn.btn-primary.btn-lg.btn-block
+        span.glyphicon.glyphicon-camera
 
   div.container-fluid
     ul.photo-list
@@ -20,11 +23,10 @@ block content
             span.glyphicon.glyphicon-heart
             span.likes-text= selfie.likes
           div.timestamp-container.pull-right.text-primary.text-bold
-            span.glyphicon.glyphicon-time= selfie.timestamp
+            span.glyphicon.glyphicon-time
+            span.timestamp-text=  selfie.timestamp
       
-  div.camera-wrapper
-    button#camera.btn.btn-primary.btn-lg.btn-block
-      span.glyphicon.glyphicon-camera
+
 
 block js
   script(src='/js/index.js')
