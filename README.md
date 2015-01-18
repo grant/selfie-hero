@@ -7,6 +7,11 @@ A tournament-style selfie battle
 $ foreman start -e .env-dev
 ```
 
+### How to deploy
+
+- Update heroku env variables (`heroku config`)
+- Change Facebook App callback URL settings
+
 ### How to develop
 
 ```sh
