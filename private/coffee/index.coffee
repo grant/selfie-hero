@@ -12,10 +12,12 @@ $(window).scroll ->
   $.data this, "scrollTimer", setTimeout(->
 
     # do something
+    $(".profile-wrapper").fadeIn()
     $(".menu").fadeIn()
     $("#camera").fadeIn()
   , 250)
 
+  $(".profile-wrapper").fadeOut()
   $(".menu").fadeOut()
   $("#camera").fadeOut()
 # camera logic to pass the event to the actual file input
