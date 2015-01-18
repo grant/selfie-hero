@@ -20,13 +20,13 @@ h2#title
   /* Set rules to fill background */
   
   /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
+  width: 100%
+  height: auto
   
   /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: fixed
+  top: 0
+  left: 0
 
 #bg-cover > img
   width: 100%
@@ -106,3 +106,14 @@ h2#title
   text-align center
   margin-left 0px
   margin-top -20px
+  
+.photo .overlay
+  background rgba(0,0,0,.80)
+  text-align center
+  padding 45px 0 66px 0
+  opacity 0
+  -webkit-transition  opacity .25s ease
+  -moz-transition  opacity .25s ease
+
+.photo:hover
+  opacity 1
