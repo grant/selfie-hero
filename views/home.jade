@@ -9,10 +9,18 @@ block content
         div.btn.btn-md.btn-default.btn-width
           span.glyphicon.glyphicon-heart-empty
       div.row.text-center.text-light
-        | @UPenn
+        //- | @UPenn
+    div.camera-wrapper
+      button#camera.btn.btn-primary.btn-lg.btn-block
+        span.glyphicon.glyphicon-camera
+    span#dummy-file-wrapper.hidden
+      input(type="file" id="take-picture" accept="image/*")
+      
 
   div.container-fluid
     ul.photo-list
+      li.photo
+        img#new-photo.img-responsive
       each selfie in selfies
         li.photo
           img(src="http://lorempixel.com/400/500").img-responsive
@@ -20,11 +28,10 @@ block content
             span.glyphicon.glyphicon-heart
             span.likes-text= selfie.likes
           div.timestamp-container.pull-right.text-primary.text-bold
-            span.glyphicon.glyphicon-time= selfie.timestamp
+            span.glyphicon.glyphicon-time
+            span.timestamp-text=  selfie.timestamp
       
-  div.camera-wrapper
-    button#camera.btn.btn-primary.btn-lg.btn-block
-      span.glyphicon.glyphicon-camera
+
 
 block js
   script(src='/js/index.js')
