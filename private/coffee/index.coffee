@@ -98,7 +98,7 @@ $('#hearts-sort').click ->
     $(".photo-list").empty()
     for selfie in body
       newPhoto = $(renderPhoto(selfie))
-      $(".photo-list").prepend(newPhoto)
+      $(".photo-list").append(newPhoto)
       newPhoto.click ->
         heartPhoto($(this))
 
