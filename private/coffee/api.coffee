@@ -25,9 +25,10 @@ module.exports =
     users: (email, cb) ->
       url = apiPath + 'api/users'
       console.log email
+      console.log url
       request.post
         url: url
-        form:
+        qs:
           email: email
       , (err, res, body) ->
         # Return user object

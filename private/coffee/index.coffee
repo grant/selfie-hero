@@ -5,7 +5,7 @@ moment = require 'moment'
 SERVER_URL = "http://104.236.41.161"
 
 # handlebars template
-renderPhoto = Handlebars.compile($("#photo-template").html())
+renderPhoto = Handlebars.compile $("#photo-template").html()
 
 $(window).scroll ->
   clearTimeout $.data(this, "scrollTimer")
@@ -101,3 +101,23 @@ $('#hearts-sort').click ->
       $(".photo-list").prepend(newPhoto)
       newPhoto.click ->
         heartPhoto($(this))
+
+$ ->
+  console.log 'hi'
+  ROT_STRENGTH = 40
+  width = 100
+  rotx = 0
+  vx = 0
+  alignBg = ->
+
+    # ease vx
+    vx += (rotx - vx) * 0.1
+    val = (ROT_STRENGTH * vx) + 50 + '%'
+    $(".photo").css "background-position", (val + ' 50%')
+
+  rotateInterval = setInterval(->
+    alignBg()
+  , 1700)
+  if window.DeviceMotionEvent isnt 'undefined'
+    window.ondevicemotion = (e) ->
+      rotx = e.accelerationIncludingGravity.x
