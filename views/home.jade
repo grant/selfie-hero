@@ -17,7 +17,6 @@ block content
 
     form(action="api/photos" enctype="multipart/form-data" method="post" id="image-form")
       input(type="file" multiple="multiple" id="take-picture" accept="image/*")
-      
 
   div.container-fluid
     ul.photo-list
@@ -32,7 +31,7 @@ block content
           div.timestamp-container.pull-right.text-primary.text-bold
             span.glyphicon.glyphicon-time
             span.timestamp-text=  selfie.timestamp
-      
+
 
 
 block js

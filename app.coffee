@@ -9,6 +9,7 @@ cookieParser = require 'cookie-parser'
 session = require("express-session")
 MongoStore = require("connect-mongo")(session)
 bodyParser = require 'body-parser'
+multer = require 'multer'
 routes = require './routes'
 
 app = express()
@@ -20,6 +21,7 @@ app.set 'view engine', 'jade'
 
 # uncomment after placing your favicon in /public
 #app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use multer dest: './public/uploads'
 app.use logger('dev')
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
