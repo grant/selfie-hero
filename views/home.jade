@@ -20,10 +20,17 @@ block content
 
   div.container-fluid
     ul.photo-list
-      li.photo#new-photo-wrapper.hidden
-        img#new-photo.img-responsive
-        div.overlay
-            div.text-center.heart-text
+      li.photo#new-photo-wrapper(style="display:none")
+        div.likes-container.pull-left.text-light.text-bold
+            span.glyphicon.glyphicon-heart
+            span.likes-text
+              | 0
+          div.timestamp-container.pull-right.text-light.text-bold
+            span.glyphicon.glyphicon-time
+            span.timestamp-text
+              | just now
+          div.overlay
+            div.text-center.heart-text.text-primary
               span.glyphicon.glyphicon-heart
       each selfie in selfies
         li.photo(data-photo-id=selfie.id style="background-image: url(http://104.236.41.161/"+selfie.url+");")
@@ -38,5 +45,22 @@ block content
             div.text-center.heart-text.text-primary
               span.glyphicon.glyphicon-heart
 
+    script(type="text/x-handlebars-template" id="photo-template").
+      <li class="photo" style="background-image: url(http://104.236.41.161/{{url}});" data-photo-id={{id}}>
+        <div class="likes-container pull-left text-light text-bold">
+          <span class="glyphicon glyphicon-heart"></span>
+          <span class="likes-text">{{hearts_count}}</span>
+        </div>
+        <div class="timestamp-container pull-right text-light text-bold">
+          <span class="glyphicon glyphicon-time">
+          <span class="timestamp-text"> {{created_at_text}} </span>
+        </div>
+        <div class="overlay">
+          <div class="text-center heart-text text-primary">
+            <span class="glyphicon glyphicon-heart"></span>
+        </div>
+      </li>
+
 block js
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js")
   script(src='/js/index.js')

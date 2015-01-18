@@ -1,5 +1,11 @@
 $ = require 'jquery'
 api = require './api'
+moment = require 'moment'
+
+SERVER_URL = "http://104.236.41.161"
+
+# handlebars template
+renderPhoto = Handlebars.compile($("#photo-template").html())
 
 $(window).scroll ->
   clearTimeout $.data(this, "scrollTimer")
@@ -12,8 +18,6 @@ $(window).scroll ->
 
   $(".menu").fadeOut()
   $("#camera").fadeOut()
-api.post.users("rogerthechen@gmail.com") (res) ->
-  console.log(res)
 # camera logic to pass the event to the actual file input
 $("#camera").click ->
   $("#take-picture").click()
@@ -28,7 +32,9 @@ $('#take-picture').submit (event) ->
   formData = new FormData()
   file = event.target.files[0]
   formData.append 'photo', file, file.name
-  formData.append 'token', '0Zj1B63fZVPrENzf0wc_Dg'
+  formData.append 'token', $("#api-token").val()
+  formData.append 'latitude', 39.9500
+  formData.append 'longitude', 75.1900
 
   $.ajax
     url: 'http://104.236.41.161/api/photos'
@@ -39,7 +45,17 @@ $('#take-picture').submit (event) ->
     contentType: false
     processData: false
     success: (returnedData) ->
-      console.log returnedData
+      # TODO: render the new image!
+      image = $("#new-photo-wrapper")
+      data = JSON.parse(returnedData)
+      image.css("background-image", "url("+SERVER_URL + "/" + data.url+")")
+      image.css("display", "block")
+      # not sure why fadein doesn't work?
+      # image.fadeIn()
+      timestamp_text = moment(data.created_at).fromNow()
+      image.find(".timestamp-text").text(timestamp_text)
+      image.find(".hearts-text").text(data.hearts_count)
+
 
   return false
 
@@ -55,11 +71,10 @@ $('.photo').click ->
   $(this).find('.overlay').fadeOut()
   token = $("#api-token").val()
   console.log token
-  api.post.heart(photo_id, token) (body) ->
+  api.post.heart photo_id, token, (body) ->
     console.log "liked"
     console.log body
     hearts_text.text(body.heart_count)
-    # toggles color
     if body.heart_status
       hearts_wrapper.removeClass("text-light").addClass("text-primary")
     else
@@ -68,9 +83,22 @@ $('.photo').click ->
 $('#recency-sort').click ->
   $("#sorting-order").value = "recency"
   console.log("switched to recency sort")
-  $(this).removeClass("btn-primary").addClass("btn-default")
+  $("#hearts-sort").removeClass("btn-primary").addClass("btn-default")
+  $("#recency-sort").removeClass("btn-default").addClass("btn-primary")
+  api.get.photos "recency", (body) ->
+    console.log($("#photos-list"))
+    console.log(body)
+    $("#photos-list").empty()
+    # for selfie in body
+      # $("#photos-list").append(renderPhoto(selfie))
 
 $('#hearts-sort').click ->
   $("#sorting-order").value = "hearts"
   console.log("switched to hearts sort")
-  $(this).removeClass("btn-primary").addClass("btn-default")
+  $("#recency-sort").removeClass("btn-primary").addClass("btn-default")
+  $(this).removeClass("btn-default").addClass("btn-primary")
+  api.get.photos "hearts", (body) ->
+    $("#photos-list").html("")
+    console.log($("#photos-list"))
+    # for selfie in body
+      # $("#photos-list").append(renderPhoto(selfie))

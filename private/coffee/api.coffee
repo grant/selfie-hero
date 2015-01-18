@@ -7,7 +7,7 @@ DEFAULT_TOKEN = 'YreIoA-nX26yqbOrAz45CA'
 # A wrapper for `https://github.com/rcchen/sh-server`
 module.exports =
   get:
-    photos: (cb, sort="recency") ->
+    photos: (sort="recency", cb) ->
       url = apiPath + 'api/photos'
       params =
         token: DEFAULT_TOKEN
@@ -24,8 +24,9 @@ module.exports =
   post:
     users: (email, cb) ->
       url = apiPath + 'api/users'
+      console.log email
       request.post
-        uri: url
+        url: url
         form:
           email: email
       , (err, res, body) ->
@@ -40,7 +41,9 @@ module.exports =
       console.log token
       url = apiPath + 'api/photos/' + photoId + '/heart'
       request.post
-        uri: url
+        url: url
+        xhrFields:
+          withCredentials: true
         form:
           token: token
       , (err, res, body) ->
