@@ -111,7 +111,9 @@ $ ->
 
     # ease vx
     vx += (rotx - vx) * 0.1
-    val = (ROT_STRENGTH * vx) + 50 + '%'
+    val = (ROT_STRENGTH * vx) + 50
+    val = Math.min(100, Math.max(0, val))
+    val += '%'
     $(".photo").css "background-position", (val + ' 50%')
 
   rotateInterval = setInterval(->
