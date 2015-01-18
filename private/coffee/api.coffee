@@ -1,4 +1,5 @@
 request = require 'request'
+moment = require 'moment'
 apiPath = 'http://104.236.41.161/'
 params =
   token: 'YreIoA-nX26yqbOrAz45CA'
@@ -12,7 +13,11 @@ module.exports =
     photos: (cb) ->
       url = apiPath + 'api/photos'
       request {url: url, qs: params}, (err, res, body) ->
-        cb JSON.parse body
+        json = JSON.parse body
+        for photo in json
+          photo.created_at_text = moment(photo.created_at).fromNow()
+        console.log json
+        cb json
   post:
     users: (email, cb) ->
       url = apiPath + 'api/users'
