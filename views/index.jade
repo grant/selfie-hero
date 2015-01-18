@@ -1,9 +1,11 @@
 extends layout
 
+body.bg
+
 block content
-  h1 hi
+  h2#title Selfies with<br> people around you.
   a(href='/auth/facebook')
-    img.fb.button(src='/img/facebook_button.png')
+    img.fb.button(src='/img/facebook_button.png')(style="width:70%; margin:15%;")
 
 block js
   script(src='/js/index.js')
