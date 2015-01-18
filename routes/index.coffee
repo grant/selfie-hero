@@ -48,6 +48,7 @@ routes =
 
   api:
     photos: (req, res) ->
+      console.log req
       console.log JSON.stringify req.files
       res.send 'server response'
 

@@ -22,18 +22,24 @@ $("#take-picture").change (event) ->
   files = event.target.files
   file = undefined
   file = files[0]  if files and files.length > 0
+
+  
   $("#image-form").submit()
-  # Image reference
-
-  # Get window.URL object
-  URL = window.URL or window.webkitURL
-
-  # Create ObjectURL
-  imgURL = URL.createObjectURL(file)
-
-  # Set img src to ObjectURL
-  showPicture.src = imgURL
-
-  # For performance reasons, revoke used ObjectURLs
-  URL.revokeObjectURL imgURL
   event.preventDefault()
+
+$("#image-form").submit -> 
+  console.log "submitting"
+  $.ajax
+    error: (xhr) ->
+      status "Error: " + xhr.status
+      return
+
+    success: (response) ->
+      if response.error
+        status "Opps, something bad happened"
+        return
+      imageUrlOnServer = response.path
+      status "Success, file uploaded to:" + imageUrlOnServer
+
+      newImg = $("#new-photo").attr("src", "http://lorempixel.com/people/400/400").attr("class", "img-responsive photo").load ->
+        newImg.prependTo($("#new-photo-wrapper"))
