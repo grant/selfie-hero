@@ -40,7 +40,7 @@ gulp.task 'coffee', ->
       transform: ['coffeeify']
       extensions: ['.coffee']
       insertGlobals: true
-    # .pipe uglify()
+    .pipe uglify()
     .pipe gulp.dest dest.coffee
 
 gulp.task 'stylus', ->

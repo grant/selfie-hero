@@ -10,10 +10,13 @@ routes =
 
   # GET main photo page
   home: router.get '/home', (req, res) ->
-    api.get.photos (body) ->
-      res.render 'home',
-        user: req.user
-        selfies: body
+    if req.user
+      api.get.photos (body) ->
+        res.render 'home',
+          user: req.user
+          selfies: body
+    else
+      res.redirect '/'
 
   # FB auth error
   authError: (req, res) ->
