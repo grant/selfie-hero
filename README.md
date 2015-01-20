@@ -1,5 +1,5 @@
-# Selfie Hero
-A tournament-style selfie battle
+# Snappo
+Selfies with people around you.
 
 ### How to start server
 
